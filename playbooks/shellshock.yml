@@ -1,0 +1,29 @@
+name: Shellshock Attack Response
+description: Detect and auto-block CVE-2014-6271 Shellshock / CGI bash injection attempts
+enabled: true
+
+# All conditions must match (AND logic)
+conditions:
+  signature_regex: "SHELLSHOCK|CVE-2014-6271|WEB.*bash.*env|bash.*cgi"
+  severity_in:
+    - high
+    - medium
+
+actions:
+  - type: block_ip
+    description: Block attacker on fwnids FORWARD chain via SSH
+
+  - type: slack_notify
+    message: |
+      :rotating_light: *[SOAR] Shellshock Attack Detected*
+      • Incident: auto-generated
+      • Attacker: `{attacker_ip}:{attacker_port}`
+      • Target:   `{target_ip}:{target_port}`
+      • Signature: `{signature}`
+      • Severity: *{severity}* (Snort Priority {priority})
+      • Time: {timestamp}
+      :shield: Attacker IP has been blocked on fwnids FORWARD chain.
+
+  - type: notion_ticket
+    title: "[INCIDENT] Shellshock from {attacker_ip} → {target_ip}"
+    priority: "{severity}"

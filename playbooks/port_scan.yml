@@ -1,0 +1,23 @@
+name: Port Scan Detection
+description: Detect Nmap / port scan activity and log it; block only on high severity
+enabled: true
+
+conditions:
+  signature_regex: "SCAN|NMAP|SYN SCAN|XMAS|FIN SCAN|NULL SCAN"
+  severity_in:
+    - high
+    - medium
+    - low
+
+actions:
+  - type: log
+    message: "Port scan detected from {attacker_ip} → {target_ip} [{signature}]"
+
+  - type: slack_notify
+    message: |
+      :mag: *[SOAR] Port Scan Detected*
+      • Attacker: `{attacker_ip}`
+      • Target:   `{target_ip}`
+      • Signature: `{signature}`
+      • Severity: *{severity}*
+      • Time: {timestamp}

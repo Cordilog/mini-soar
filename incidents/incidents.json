@@ -1,0 +1,275 @@
+[
+  {
+    "id": "INC-20260617-0001",
+    "created_at": "2026-06-17T06:28:22.231720+00:00",
+    "alert": {
+      "signature": "SHELLSHOCK HTTP request",
+      "sig_id": "1:2014:1",
+      "attacker_ip": "192.168.100.3",
+      "attacker_port": 54321,
+      "target_ip": "10.10.11.10",
+      "target_port": 80,
+      "protocol": "TCP",
+      "severity": "high",
+      "priority": 1,
+      "classification": "Web App Attack",
+      "snort_timestamp": ""
+    },
+    "playbooks_executed": [
+      {
+        "playbook": "Shellshock Attack Response",
+        "actions": [
+          {
+            "type": "block_ip",
+            "success": true,
+            "target_ip": "192.168.100.3"
+          },
+          {
+            "type": "slack_notify",
+            "success": false
+          },
+          {
+            "type": "notion_ticket",
+            "success": false,
+            "title": "[INCIDENT] Shellshock from 192.168.100.3 \u2192 10.10.11.10"
+          }
+        ]
+      }
+    ],
+    "status": "resolved"
+  },
+  {
+    "id": "INC-20260617-0002",
+    "created_at": "2026-06-17T06:44:44.640353+00:00",
+    "alert": {
+      "signature": "SHELLSHOCK HTTP request",
+      "sig_id": "1:2014:1",
+      "attacker_ip": "192.168.100.3",
+      "attacker_port": 54321,
+      "target_ip": "10.10.11.10",
+      "target_port": 80,
+      "protocol": "TCP",
+      "severity": "high",
+      "priority": 1,
+      "classification": "Web App Attack",
+      "snort_timestamp": ""
+    },
+    "playbooks_executed": [
+      {
+        "playbook": "Shellshock Attack Response",
+        "actions": [
+          {
+            "type": "block_ip",
+            "success": true,
+            "target_ip": "192.168.100.3"
+          },
+          {
+            "type": "slack_notify",
+            "success": false
+          },
+          {
+            "type": "notion_ticket",
+            "success": false,
+            "title": "[INCIDENT] Shellshock from 192.168.100.3 \u2192 10.10.11.10"
+          }
+        ]
+      }
+    ],
+    "status": "resolved"
+  },
+  {
+    "id": "INC-20260617-0003",
+    "created_at": "2026-06-17T06:47:03.311000+00:00",
+    "alert": {
+      "signature": "SHELLSHOCK HTTP request",
+      "sig_id": "1:2014:1",
+      "attacker_ip": "192.168.100.3",
+      "attacker_port": 54321,
+      "target_ip": "10.10.11.10",
+      "target_port": 80,
+      "protocol": "TCP",
+      "severity": "high",
+      "priority": 1,
+      "classification": "Web App Attack",
+      "snort_timestamp": ""
+    },
+    "playbooks_executed": [
+      {
+        "playbook": "Shellshock Attack Response",
+        "actions": [
+          {
+            "type": "block_ip",
+            "success": true,
+            "target_ip": "192.168.100.3"
+          },
+          {
+            "type": "slack_notify",
+            "success": true
+          },
+          {
+            "type": "notion_ticket",
+            "success": false,
+            "title": "[INCIDENT] Shellshock from 192.168.100.3 \u2192 10.10.11.10"
+          }
+        ]
+      }
+    ],
+    "status": "resolved"
+  },
+  {
+    "id": "INC-20260617-0004",
+    "created_at": "2026-06-17T07:21:14.570140+00:00",
+    "alert": {
+      "signature": "SHELLSHOCK HTTP request",
+      "sig_id": "1:2014:1",
+      "attacker_ip": "192.168.100.3",
+      "attacker_port": 54321,
+      "target_ip": "10.10.11.10",
+      "target_port": 80,
+      "protocol": "TCP",
+      "severity": "high",
+      "priority": 1,
+      "classification": "Web App Attack",
+      "snort_timestamp": ""
+    },
+    "playbooks_executed": [
+      {
+        "playbook": "Shellshock Attack Response",
+        "actions": [
+          {
+            "type": "block_ip",
+            "success": true,
+            "target_ip": "192.168.100.3"
+          },
+          {
+            "type": "slack_notify",
+            "success": true
+          },
+          {
+            "type": "notion_ticket",
+            "success": true,
+            "title": "[INCIDENT] Shellshock from 192.168.100.3 \u2192 10.10.11.10"
+          }
+        ]
+      }
+    ],
+    "status": "resolved"
+  },
+  {
+    "id": "INC-20260617-0005",
+    "created_at": "2026-06-17T07:22:06.417327+00:00",
+    "alert": {
+      "signature": "SHELLSHOCK HTTP request",
+      "sig_id": "1:2014:1",
+      "attacker_ip": "192.168.100.3",
+      "attacker_port": 54321,
+      "target_ip": "10.10.11.10",
+      "target_port": 80,
+      "protocol": "TCP",
+      "severity": "high",
+      "priority": 1,
+      "classification": "Web App Attack",
+      "snort_timestamp": ""
+    },
+    "playbooks_executed": [
+      {
+        "playbook": "Shellshock Attack Response",
+        "actions": [
+          {
+            "type": "block_ip",
+            "success": true,
+            "target_ip": "192.168.100.3"
+          },
+          {
+            "type": "slack_notify",
+            "success": true
+          },
+          {
+            "type": "notion_ticket",
+            "success": true,
+            "title": "[INCIDENT] Shellshock from 192.168.100.3 \u2192 10.10.11.10"
+          }
+        ]
+      }
+    ],
+    "status": "resolved"
+  },
+  {
+    "id": "INC-20260617-0006",
+    "created_at": "2026-06-17T08:02:37.019949+00:00",
+    "alert": {
+      "signature": "SHELLSHOCK",
+      "sig_id": "1:1000002:1",
+      "attacker_ip": "192.168.100.3",
+      "attacker_port": 35738,
+      "target_ip": "10.10.11.10",
+      "target_port": 6271,
+      "protocol": "TCP",
+      "severity": "high",
+      "priority": 1,
+      "classification": "",
+      "snort_timestamp": "06/17-17:02:35.978093"
+    },
+    "playbooks_executed": [
+      {
+        "playbook": "Shellshock Attack Response",
+        "actions": [
+          {
+            "type": "block_ip",
+            "success": true,
+            "target_ip": "192.168.100.3"
+          },
+          {
+            "type": "slack_notify",
+            "success": true
+          },
+          {
+            "type": "notion_ticket",
+            "success": true,
+            "title": "[INCIDENT] Shellshock from 192.168.100.3 \u2192 10.10.11.10"
+          }
+        ]
+      }
+    ],
+    "status": "resolved"
+  },
+  {
+    "id": "INC-20260617-0007",
+    "created_at": "2026-06-17T08:14:11.988258+00:00",
+    "alert": {
+      "signature": "SHELLSHOCK",
+      "sig_id": "1:1000002:1",
+      "attacker_ip": "192.168.100.3",
+      "attacker_port": 59646,
+      "target_ip": "10.10.11.10",
+      "target_port": 6271,
+      "protocol": "TCP",
+      "severity": "high",
+      "priority": 1,
+      "classification": "",
+      "snort_timestamp": "06/17-17:14:10.607799"
+    },
+    "playbooks_executed": [
+      {
+        "playbook": "Shellshock Attack Response",
+        "actions": [
+          {
+            "type": "block_ip",
+            "success": true,
+            "target_ip": "192.168.100.3"
+          },
+          {
+            "type": "slack_notify",
+            "success": true
+          },
+          {
+            "type": "notion_ticket",
+            "success": true,
+            "title": "[INCIDENT] Shellshock from 192.168.100.3 \u2192 10.10.11.10"
+          }
+        ]
+      }
+    ],
+    "status": "resolved"
+  }
+]
