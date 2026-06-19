@@ -40,7 +40,6 @@ mini-soar/
 │   └── notion.py        # Notion 인시던트 티켓 생성
 ├── playbooks/
 │   ├── shellshock.yml   # Shellshock 대응 플레이북
-│   ├── sql_injection.yml
 │   └── port_scan.yml
 ├── logs/                # soar.log 생성 위치
 ├── incidents/           # incidents.json 생성 위치
