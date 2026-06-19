@@ -11,7 +11,7 @@ conditions:
 
 actions:
   - type: block_ip
-    description: Block attacker on fwnids FORWARD chain via SSH
+    description: Block attacker on fwips FORWARD chain via SSH
 
   - type: slack_notify
     message: |
@@ -22,7 +22,7 @@ actions:
       • Signature: `{signature}`
       • Severity: *{severity}* (Snort Priority {priority})
       • Time: {timestamp}
-      :shield: Attacker IP has been blocked on fwnids FORWARD chain.
+      :shield: Attacker IP has been blocked on fwips FORWARD chain.
 
   - type: notion_ticket
     title: "[INCIDENT] Shellshock from {attacker_ip} → {target_ip}"

@@ -1,9 +1,9 @@
 """
-block.py — block an attacker IP on fwnids via SSH.
+block.py — block an attacker IP on fwips via SSH.
 
 The remote authorized_keys entry restricts the session to soar_iptables.sh,
 so the SSH command argument is just the IP to block.
-The script on fwnids validates the IP and inserts:
+The script on fwips validates the IP and inserts:
     iptables -I FORWARD -s <IP> -j DROP
 """
 
@@ -18,12 +18,12 @@ _IP_RE = re.compile(r'^\d{1,3}(?:\.\d{1,3}){3}$')
 
 
 def block_ip(ip: str) -> bool:
-    """SSH into fwnids and block ip in the FORWARD chain. Returns True on success."""
+    """SSH into fwips and block ip in the FORWARD chain. Returns True on success."""
     if not _IP_RE.match(ip):
         logger.error("block_ip: invalid IP format: %s", ip)
         return False
 
-    fwnids_host = os.getenv("FWNIDS_HOST", "192.168.100.6")
+    fwips_host = os.getenv("FWIPS_HOST", "192.168.100.6")
     ssh_key = os.getenv("SSH_KEY_PATH", os.path.expanduser("~/.ssh/id_rsa"))
 
     cmd = [
@@ -32,11 +32,11 @@ def block_ip(ip: str) -> bool:
         "-o", "StrictHostKeyChecking=no",
         "-o", "BatchMode=yes",
         "-o", "ConnectTimeout=10",
-        f"root@{fwnids_host}",
+        f"root@{fwips_host}",
         ip,
     ]
 
-    logger.info("Blocking IP %s on %s", ip, fwnids_host)
+    logger.info("Blocking IP %s on %s", ip, fwips_host)
     try:
         result = subprocess.run(
             cmd,

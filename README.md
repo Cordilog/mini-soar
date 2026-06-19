@@ -9,7 +9,7 @@
 │  Kali (192.168.100.3)                                               │
 │       │ 공격 트래픽                                                  │
 │       ▼                                                             │
-│  fwnids (192.168.100.6)  ◄── Snort IPS (/var/log/snort/alert)      │
+│  fwips (192.168.100.6)  ◄── Snort IPS (/var/log/snort/alert)      │
 │       │                                                             │
 │       │  POST /api/alerts (rsyslog 또는 스크립트)                    │
 │       ▼                                                             │
@@ -19,7 +19,7 @@
 │  │    └─ snort_parser.py   ← alert 파싱                         │   │
 │  │    └─ playbook_engine.py ← 조건 매칭                         │   │
 │  │         └─ actions/                                          │   │
-│  │              ├─ block.py   → SSH → fwnids iptables FORWARD   │   │
+│  │              ├─ block.py   → SSH → fwips iptables FORWARD   │   │
 │  │              ├─ slack.py   → Slack Webhook POST              │   │
 │  │              └─ notion.py  → Notion API POST                 │   │
 │  └──────────────────────────────────────────────────────────────┘   │
@@ -35,7 +35,7 @@ mini-soar/
 ├── playbook_engine.py   # 플레이북 매칭 & 실행 엔진
 ├── actions/
 │   ├── __init__.py      # 액션 디스패처
-│   ├── block.py         # SSH → fwnids iptables 차단
+│   ├── block.py         # SSH → fwips iptables 차단
 │   ├── slack.py         # Slack Webhook 알림
 │   └── notion.py        # Notion 인시던트 티켓 생성
 ├── playbooks/
@@ -72,7 +72,7 @@ nano .env   # 실제 값으로 수정
 |------|------|------|
 | `FLASK_HOST` | 바인딩 주소 | `0.0.0.0` |
 | `FLASK_PORT` | 포트 | `5000` |
-| `FWNIDS_HOST` | fwnids IP | `192.168.100.6` |
+| `FWIPS_HOST` | fwips IP | `192.168.100.6` |
 | `SSH_KEY_PATH` | SSH 개인키 경로 | `~/.ssh/id_rsa` |
 | `SLACK_WEBHOOK_URL` | Slack Incoming Webhook URL | `your-slack-webhook-url-here` |
 | `NOTION_API_KEY` | Notion Integration 토큰 | `secret_xxx` |
@@ -111,13 +111,13 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now mini-soar
 ```
 
-## fwnids 연동 설정
+## fwips 연동 설정
 
-fwnids의 rsyslog 또는 커스텀 스크립트에서 Snort alert가 발생할 때 SOAR로 POST합니다.
+fwips의 rsyslog 또는 커스텀 스크립트에서 Snort alert가 발생할 때 SOAR로 POST합니다.
 
 ### 방법 1 — 커스텀 스크립트 (권장)
 
-`/usr/local/bin/snort_to_soar.sh` (fwnids에 배치):
+`/usr/local/bin/snort_to_soar.sh` (fwips에 배치):
 
 ```bash
 #!/bin/bash
@@ -133,7 +133,7 @@ done
 ### 방법 2 — rsyslog omhttp 모듈
 
 ```
-# /etc/rsyslog.d/50-soar.conf (fwnids)
+# /etc/rsyslog.d/50-soar.conf (fwips)
 module(load="omhttp")
 if $programname == 'snort' then {
     action(type="omhttp"
@@ -193,7 +193,7 @@ conditions:                # 모두 AND 조건
   classification_contains: "Web App"
 
 actions:
-  - type: block_ip         # SSH → fwnids iptables DROP
+  - type: block_ip         # SSH → fwips iptables DROP
 
   - type: slack_notify
     message: |
